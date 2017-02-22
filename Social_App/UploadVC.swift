@@ -31,22 +31,22 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
 		imagePicker.delegate = self
 	}
 	
-	@IBAction func selectImage(sender: UITapGestureRecognizer) {
-		presentViewController(imagePicker, animated: true, completion: nil)
+	@IBAction func selectImage(_ sender: UITapGestureRecognizer) {
+		present(imagePicker, animated: true, completion: nil)
 		
 	}
 	
-	@IBAction func makePost(sender: AnyObject) {
+	@IBAction func makePost(_ sender: AnyObject) {
 		
-		if let txt = postField.text where txt != "" {
+		if let txt = postField.text, txt != "" {
 			
-			if let img = imageSelectorBG.image where imageSelected == true {
+			if let img = imageSelectorBG.image, imageSelected == true {
 				
 				let urlStr = "https://api.imageshack.com/v2/images"
-				let url = NSURL(string: urlStr)!
+				let url = URL(string: urlStr)!
 				let imgData = UIImageJPEGRepresentation(img, 0.2)!
-				let keyData = "12DJKPSU5fc3afbd01b1630cc718cae3043220f3".dataUsingEncoding(NSUTF8StringEncoding)!
-				let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
+				let keyData = "12DJKPSU5fc3afbd01b1630cc718cae3043220f3".data(using: String.Encoding.utf8)!
+				let keyJSON = "json".data(using: String.Encoding.utf8)!
 				
 				Alamofire.upload(.POST, url, multipartFormData: { multipartFormData in
 					
@@ -87,29 +87,29 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
 
 
 	
-	func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-		imagePicker.dismissViewControllerAnimated(true, completion: nil)
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+		imagePicker.dismiss(animated: true, completion: nil)
 		imageSelectorBG.image = image
-		imagelabel.hidden = true
+		imagelabel.isHidden = true
 		imageSelected = true
 		
 	}
 	
 	
 	
-	func postToFirebase(imgUrl: String?)  {
-		let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String
-		let now = NSDate()
+	func postToFirebase(_ imgUrl: String?)  {
+		let uid = UserDefaults.standard.value(forKey: KEY_UID) as! String
+		let now = Date()
 		var post: Dictionary<String, AnyObject> = [
-			"description": postField.text!,
-			"likes": 0,
-			"date": "\(now)",
-			"userKey": "\(uid)"
+			"description": postField.text! as AnyObject,
+			"likes": 0 as AnyObject,
+			"date": "\(now)" as AnyObject,
+			"userKey": "\(uid)" as AnyObject
 		]
 		
 		
 		if imgUrl != nil {
-			post["imageURL"] = imgUrl!
+			post["imageURL"] = imgUrl! as AnyObject?
 		}
 		
 		let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
@@ -123,18 +123,18 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
 
 		postField.text = ""
 		imageSelectorBG.image = nil
-		imagelabel.hidden = false
+		imagelabel.isHidden = false
 		imageSelected = false
 	}
 	
-	func addPost(post:String) {
+	func addPost(_ post:String) {
 		let post = post
 		postRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("posts").childByAppendingPath(post)
 		postRef.setValue(true)
 		
 	}
 	
-	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		view.endEditing(true)
 	}
 	

@@ -26,7 +26,7 @@ class CollectionViewCell: UICollectionViewCell {
 		return _post
 	}
 	
-	func configureCell(post: Post) {
+	func configureCell(_ post: Post) {
 		self._post = post
 		DataService.ds.REF_POSTS.childByAppendingPath(post.postKey).observeEventType(.Value, withBlock: { snapshot in
 			if let postDict = snapshot.value as? Dictionary<String,AnyObject> {

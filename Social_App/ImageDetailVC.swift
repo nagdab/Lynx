@@ -15,7 +15,7 @@ class ImageDetailVC: UIViewController {
 
 	@IBOutlet weak var image: UIImageView!
 	@IBOutlet weak var label: UILabel!
-	var eventData: NSIndexPath!
+	var eventData: IndexPath!
 	var posts = [Post]()
 	var post: Post!
 	
@@ -42,7 +42,7 @@ class ImageDetailVC: UIViewController {
 		
     }
 	
-	func configureView(post: Post) {
+	func configureView(_ post: Post) {
 		label.text = post.postDescription
 		let url = post.imageURL
 		//image.image = FeedVC.imageCache.objectForKey(url!) as? UIImage

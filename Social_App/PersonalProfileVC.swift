@@ -31,23 +31,23 @@ class PersonalProfileVC: UIViewController, UICollectionViewDataSource, UICollect
 		
     }
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
 		let numberOfCell: CGFloat = 3
 		let cellWidth = (self.photoCollection.bounds.size.width / numberOfCell) - 1
 		
-		return CGSizeMake(cellWidth, cellWidth)
+		return CGSize(width: cellWidth, height: cellWidth)
 	}
 	
 	
 	
-	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
 		
 		
 		let post = posts[indexPath.row]
 		
-		if let cell = photoCollection.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as? CollectionViewCell {
+		if let cell = photoCollection.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell {
 	
 			cell.configureCell(post)
 			return cell
@@ -57,16 +57,16 @@ class PersonalProfileVC: UIViewController, UICollectionViewDataSource, UICollect
 		}
 	}
 	
-	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return posts.count
 	}
 	
-	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1
 	}
 	
 	func sortList() {
-		posts.sortInPlace() { $0.date > $1.date }
+		posts.sort() { $0.date > $1.date }
 		self.photoCollection.reloadData()
 	}
 	

@@ -1,13 +1,23 @@
+#ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern "C"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
+#endif
 
 #import "BFAppLink.h"
-#import "BFAppLink_Internal.h"
 #import "BFAppLinkNavigation.h"
 #import "BFAppLinkResolving.h"
 #import "BFAppLinkReturnToRefererController.h"
 #import "BFAppLinkReturnToRefererView.h"
 #import "BFAppLinkReturnToRefererView_Internal.h"
 #import "BFAppLinkTarget.h"
+#import "BFAppLink_Internal.h"
 #import "BFMeasurementEvent.h"
 #import "BFMeasurementEvent_Internal.h"
 #import "BFURL.h"

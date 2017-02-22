@@ -13,11 +13,11 @@ import Alamofire
 
 class User {
 	
-	private var _profileImageURL: String!
-	private var _username: String?
-	private var _userKey: String!
-	private var _userRef: Firebase!
-	private var _postRef: Int!
+	fileprivate var _profileImageURL: String!
+	fileprivate var _username: String?
+	fileprivate var _userKey: String!
+	fileprivate var _userRef: Firebase!
+	fileprivate var _postRef: Int!
 	
 	var profileImageURL: String! {
 		return _profileImageURL
@@ -60,7 +60,7 @@ class User {
 		
 	}
 	
-	func addPost(post: Post) {
+	func addPost(_ post: Post) {
 		let post = post
 		_userRef.childByAppendingPath("posts").setValue(post.postKey)
 	}

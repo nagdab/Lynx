@@ -16,8 +16,8 @@ class ViewController: UIViewController {
 	@IBOutlet weak var emailField: materialTextField!
 	@IBOutlet weak var passwordField: materialTextField!
 	
-	@IBAction func EmailAttemptLogin(sender: AnyObject) {
-		if let email = emailField.text where email != "", let pwd = passwordField.text where pwd != "" {
+	@IBAction func EmailAttemptLogin(_ sender: AnyObject) {
+		if let email = emailField.text, email != "", let pwd = passwordField.text, pwd != "" {
 			DataService.ds.REF_BASE.authUser(email, password: pwd, withCompletionBlock: { error, authData in
 				
 				if error != nil {
@@ -54,24 +54,24 @@ class ViewController: UIViewController {
 		}
 	}
 	
-	func showErrorAlert(title: String, msg: String) {
-		let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
-		let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+	func showErrorAlert(_ title: String, msg: String) {
+		let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+		let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
 		alert.addAction(action)
-		presentViewController(alert, animated: true, completion: nil)
+		present(alert, animated: true, completion: nil)
 	}
 
-	@IBAction func fbButtonPressed(sender: AnyObject!) {
+	@IBAction func fbButtonPressed(_ sender: AnyObject!) {
 		let loginManager = FBSDKLoginManager()
 		
-		loginManager.logInWithReadPermissions(["email"], fromViewController: nil, handler: { (result, FBerror) -> Void in
+		loginManager.logIn(withReadPermissions: ["email"], from: nil, handler: { (result, FBerror) -> Void in
 			
 			if  FBerror != nil {
 				print("facebook login failed \(FBerror)")
-			} else if result.isCancelled {
+			} else if result!.isCancelled {
 				print("login canceled")
 			} else {
-				let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+				let accessToken = FBSDKAccessToken.current().tokenString
 				
 				DataService.ds.REF_BASE.authWithOAuthProvider("facebook", token: accessToken, withCompletionBlock: { (error, authData) -> Void in
 					if error != nil {

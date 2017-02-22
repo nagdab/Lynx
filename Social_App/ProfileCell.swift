@@ -25,17 +25,17 @@ class ProfileCell: UITableViewCell {
 				
     }
 	
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
 	}
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 	
-	func configureCell(userKey: String) {
+	func configureCell(_ userKey: String) {
 		
 		
 		UserRef = DataService.ds.REF_USERS.childByAppendingPath(userKey)

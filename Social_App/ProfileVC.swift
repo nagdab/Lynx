@@ -15,8 +15,8 @@ class ProfileVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
 	var user: User!
 	var userKey: String!
 	var posts = [Post]()
-	var followingRef: Firebase!
-	var followersRef: Firebase!
+	var followingRef: FIRApp!
+	var followersRef: FIRApp!
 
 	
 	@IBOutlet weak var followBtnView: FollowingButton!
@@ -30,10 +30,10 @@ class ProfileVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
 		profileImg.layer.cornerRadius = profileImg.frame.size.width / 2
 		photoCollection.dataSource = self
 		photoCollection.delegate = self
-		let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String
+		let uid = UserDefaults.standard.value(forKey: KEY_UID) as! String
 		
-		followingRef = DataService.ds.REF_USERS.childByAppendingPath(userKey).childByAppendingPath("followers").childByAppendingPath(uid)
-		followersRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("following").childByAppendingPath(userKey)
+		followingRef = DataService.ds.REF_USERS.childByAppendingPath(userKey).childByAppendingPath("followers").child(byAppendingPath: uid)
+		followersRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("following").child(byAppendingPath: userKey)
 		followingRef.observeSingleEventOfType(.Value, withBlock: { snap in
 			if snap.exists() {
 				self.followBtnView.setTitle("Following", forState: UIControlState.Normal)
@@ -48,7 +48,7 @@ class ProfileVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
 		getUser()
 		
 		}
-	@IBAction func followBtnPressed(sender: AnyObject) {
+	@IBAction func followBtnPressed(_ sender: AnyObject) {
 		followersRef.observeSingleEventOfType(.Value, withBlock: { snap in
 			if snap.exists() {
 				self.followingRef.removeValue()
@@ -70,19 +70,19 @@ class ProfileVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
 		
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
 		let numberOfCell: CGFloat = 3
 		let cellWidth = (self.photoCollection.bounds.size.width / numberOfCell) - 1
-		return CGSizeMake(cellWidth, cellWidth)
+		return CGSize(width: cellWidth, height: cellWidth)
 	}
 	
 	
 	
-	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
 		let post = posts[indexPath.row]
-		if let cell = photoCollection.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as? CollectionViewCell {
+		if let cell = photoCollection.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell {
 			
 			cell.configureCell(post)
 			return cell
@@ -92,16 +92,16 @@ class ProfileVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
 		}
 	}
 	
-	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return posts.count
 	}
 	
-	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1
 	}
 	
 	func sortList() {
-		posts.sortInPlace() { $0.date > $1.date }
+		posts.sort() { $0.date > $1.date }
 		self.photoCollection.reloadData()
 	}
 	

@@ -42,16 +42,16 @@ class PostCell: UITableViewCell {
 		let tap = UITapGestureRecognizer(target: self, action: #selector(PostCell.likeTapped(_:)))
 		tap.numberOfTapsRequired = 1
 		self.heartImg.addGestureRecognizer(tap)
-		self.heartImg.userInteractionEnabled = true
+		self.heartImg.isUserInteractionEnabled = true
 		
 		
 	}
 	
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		profileImg.layer.cornerRadius = profileImg.frame.size.width / 2
 	}
 	
-	func configureCell(post: Post, userKey: String) {
+	func configureCell(_ post: Post, userKey: String) {
 		
 		
 		likeRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath(post.postKey)
@@ -118,7 +118,7 @@ class PostCell: UITableViewCell {
 		})
 	}
 	
-	func getProfileImage(url: String) {
+	func getProfileImage(_ url: String) {
 		Alamofire.request(.GET, url).response(completionHandler: { request, response, data, err in
 		 
 			
@@ -127,7 +127,7 @@ class PostCell: UITableViewCell {
 		})
 	}
 	
-	func likeTapped(sender: UITapGestureRecognizer) {
+	func likeTapped(_ sender: UITapGestureRecognizer) {
 		self.likeRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
 			if snapshot.exists() {
 				self.likeRef.removeValue()

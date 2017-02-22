@@ -8,40 +8,46 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
+import FirebaseAnalytics
+import FirebaseDatabase
 
 let BASE_URL = "https://ph-watch.firebaseio.com"
 
 class DataService {
 	
 	static let ds = DataService()
+    
+    var ref: FIRDatabaseReference! = FIRDatabase.database().reference()
+    
+    
+	fileprivate var _REF_BASE = FIRDatabase.database().reference()
+	fileprivate var _REF_POSTS = FIRDatabase.database().reference().child("posts")
+	fileprivate var _REF_USERS = FIRDatabase.database().reference().child("users")
+	fileprivate var _REF_USERNAMES = FIRDatabase.database().reference().child("usernames")
 	
-	private var _REF_BASE = Firebase(url: "\(BASE_URL)")
-	private var _REF_POSTS = Firebase(url: "\(BASE_URL)/posts")
-	private var _REF_USERS = Firebase(url: "\(BASE_URL)/users")
-	private var _REF_USERNAMES = Firebase(url: "\(BASE_URL)/usernames")
-	
-	var REF_BASE: Firebase {
+	var REF_BASE: FIRDatabaseReference {
 		return _REF_BASE
 	}
 	
-	var REF_POSTS: Firebase {
+	var REF_POSTS: FIRDatabaseReference {
 		return _REF_POSTS
 	}
 	
-	var REF_USERS: Firebase {
+	var REF_USERS: FIRDatabaseReference {
 		return _REF_USERS
 	}
 	
-	var REF_USERNAMES: Firebase {
+	var REF_USERNAMES: FIRDatabaseReference {
 		return _REF_USERNAMES
 	}
 	
-	func createFirebaseUser(uid: String, user: Dictionary<String, String>) {
-		REF_USERS.childByAppendingPath(uid).setValue(user)
+	func createFirebaseUser(_ uid: String, user: Dictionary<String, String>) {
+		REF_USERS.child(byAppendingPath: uid).setValue(user)
 	}
 	
-	var REF_USER_CURRENT: Firebase {
-		let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String
+	var REF_USER_CURRENT: FIRDatabaseReference {
+		let uid = UserDefaults.standard.value(forKey: KEY_UID) as! String
 		let user = Firebase(url: "\(REF_USERS)").childByAppendingPath(uid)
 		return user!
 	}

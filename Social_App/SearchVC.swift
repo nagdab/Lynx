@@ -35,40 +35,40 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 		
     }
 	
-	func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+	func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
 		searchActive = true
 	}
 	
-	func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
 		searchActive = false
-		UIApplication.sharedApplication().sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, forEvent:nil)
+		UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
 
 		
 	}
 	
-	func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		searchActive = false
 		self.users = []
 		self.SearchTableView.reloadData()
 		
 	}
 	
-	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		searchActive = false
-		UIApplication.sharedApplication().sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, forEvent:nil)
+		UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
 	}
 	
 	
 	
 	
-	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		if searchBar.text == "" || searchBar.text == nil {
 			searchActive = false
 			self.users = []
 			SearchTableView.reloadData()
 		} else {
 			searchActive = true
-			let lowercase = searchText.lowercaseString
+			let lowercase = searchText.lowercased()
 			
 			self.getSearchData(lowercase)
 			self.users = []
@@ -79,7 +79,7 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 	}
 	
 	
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if searchActive {
 		return self.users.count
 		}
@@ -89,9 +89,9 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 	}
 	
 	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let user = users[indexPath.row]
-		if let cell = SearchTableView.dequeueReusableCellWithIdentifier("profilecell") as? ProfileCell {
+		if let cell = SearchTableView.dequeueReusableCell(withIdentifier: "profilecell") as? ProfileCell {
 			
 			
 			cell.configureCell(user)
@@ -105,7 +105,7 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 	
 
 	
-	func getSearchData(searchText: String) {
+	func getSearchData(_ searchText: String) {
 		
 		let ref = Firebase(url: "https://ph-watch.firebaseio.com/usernames")
 		
@@ -120,11 +120,11 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 		})
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showProfile" {
-			let destination = segue.destinationViewController as? ProfileVC
+			let destination = segue.destination as? ProfileVC
 			let cell = sender as! ProfileCell
-			let selected = SearchTableView.indexPathForCell(cell)
+			let selected = SearchTableView.indexPath(for: cell)
 			let userkey = users[(selected?.row)!]
 			destination!.userKey = userkey
 		}

@@ -20,29 +20,29 @@ class UsernameVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
 	@IBOutlet weak var profileImage: UIImageView!
 	
 	@IBOutlet weak var buttonLabel: UIButton!
-	@IBAction func createUser(Sender: AnyObject){
+	@IBAction func createUser(_ Sender: AnyObject){
 		
 		if userNameLbl.text != "" && imageSelected == true {
-		let usernametext = userNameLbl.text!.lowercaseString
+		let usernametext = userNameLbl.text!.lowercased()
 		DataService.ds.REF_USER_CURRENT.childByAppendingPath("username").setValue(usernametext)
-		let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String
+		let uid = UserDefaults.standard.value(forKey: KEY_UID) as! String
 		DataService.ds.REF_USERNAMES.childByAppendingPath(usernametext).setValue(uid)
 		pictureUpload()
 		
-		NSUserDefaults.standardUserDefaults().setObject(usernametext, forKey: USERNAME)
-		performSegueWithIdentifier("loggedInWithUsername", sender: nil)
+		UserDefaults.standard.set(usernametext, forKey: USERNAME)
+		performSegue(withIdentifier: "loggedInWithUsername", sender: nil)
 		} else {
 			showErrorAlert("Missing Username/Profile Image", msg: "Select a profile image, and username to continue")
 		}
 	}
 	
-	@IBAction func ImagePicker(sender: AnyObject) {
-		presentViewController(imagePicker, animated: true, completion: nil)
+	@IBAction func ImagePicker(_ sender: AnyObject) {
+		present(imagePicker, animated: true, completion: nil)
 		
 	}
 	
-	func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-		dismissViewControllerAnimated(true, completion: nil)
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+		dismiss(animated: true, completion: nil)
 		profileImage.image = image
 		imageSelected = true
 	}
@@ -53,20 +53,20 @@ class UsernameVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
 		imagePicker.delegate = self
     }
 	
-	func postProfileImageToFireB(url: String) {
-		NSUserDefaults.standardUserDefaults().setObject(url, forKey: "profileImageUrl")
+	func postProfileImageToFireB(_ url: String) {
+		UserDefaults.standard.set(url, forKey: "profileImageUrl")
 		DataService.ds.REF_USER_CURRENT.childByAppendingPath("profileImageUrl").setValue(url)
 	}
 	
 	func pictureUpload() {
 		
-		if let img = profileImage.image where imageSelected == true {
+		if let img = profileImage.image, imageSelected == true {
 			
 			let urlStr = "https://api.imageshack.com/v2/images"
-			let url = NSURL(string: urlStr)!
+			let url = URL(string: urlStr)!
 			let imgData = UIImageJPEGRepresentation(img, 0.2)!
-			let keyData = "12DJKPSU5fc3afbd01b1630cc718cae3043220f3".dataUsingEncoding(NSUTF8StringEncoding)!
-			let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
+			let keyData = "12DJKPSU5fc3afbd01b1630cc718cae3043220f3".data(using: String.Encoding.utf8)!
+			let keyJSON = "json".data(using: String.Encoding.utf8)!
 			
 			Alamofire.upload(.POST, url, multipartFormData: { multipartFormData in
 				
@@ -99,11 +99,11 @@ class UsernameVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
 		}
 	}
 	
-	func showErrorAlert(title: String, msg: String) {
-		let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
-		let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+	func showErrorAlert(_ title: String, msg: String) {
+		let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+		let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
 		alert.addAction(action)
-		presentViewController(alert, animated: true, completion: nil)
+		present(alert, animated: true, completion: nil)
 	}
 	
 	

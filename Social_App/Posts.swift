@@ -10,18 +10,18 @@ import Foundation
 import Firebase
 
 class Post {
-	private var _postDescription: String!
-	private var _imageURL: String?
-	private var _username: String?
-	private var _likes: Int!
-	private var _postKey: String!
-	private var _profileImageURL: String?
-	private var _date: String!
-	private var _userKey: String!
+	fileprivate var _postDescription: String!
+	fileprivate var _imageURL: String?
+	fileprivate var _username: String?
+	fileprivate var _likes: Int!
+	fileprivate var _postKey: String!
+	fileprivate var _profileImageURL: String?
+	fileprivate var _date: String!
+	fileprivate var _userKey: String!
 	
 	
 	
-	private var _postRef: Firebase!
+	fileprivate var _postRef: Firebase!
 	
 	var date: String {
 		return _date
@@ -89,7 +89,7 @@ class Post {
 		self._postRef = DataService.ds.REF_POSTS.childByAppendingPath(self.postKey)
 	}
 	
-	func adjustLikes(addLike: Bool) {
+	func adjustLikes(_ addLike: Bool) {
 		
 		if addLike {
 			_likes = _likes + 1

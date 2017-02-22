@@ -11,9 +11,9 @@ import UIKit
 class FollowingButton: UIButton {
 	override func awakeFromNib() {
 		layer.cornerRadius = 4
-		layer.backgroundColor = UIColor.clearColor().CGColor
+		layer.backgroundColor = UIColor.clear.cgColor
 		
-		layer.borderColor =  UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0).CGColor
+		layer.borderColor =  UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0).cgColor
 		layer.borderWidth = 1
 		
 	}

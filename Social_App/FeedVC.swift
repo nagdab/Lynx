@@ -88,23 +88,23 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
 	}
 	
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return self.posts.count
 	}
 	
 
-	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		let height = self.feedTV.layer.frame.height
 		return height / 1.25
 	}
 	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let post1 = posts[indexPath.row]
 		let userkey = post1.userKey
 		
 			
 			
-		if let cell = feedTV.dequeueReusableCellWithIdentifier("PostCell", forIndexPath: indexPath) as? PostCell {
+		if let cell = feedTV.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell {
 			
 			
 				
@@ -128,11 +128,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		
 		if segue.identifier == "showProfile" {
-			let destination = segue.destinationViewController as? ProfileVC
-			let user1 = posts[(sender?.row)!].userKey
+			let destination = segue.destination as? ProfileVC
+			let user1 = posts[((sender as AnyObject).row)!].userKey
 			destination!.userKey = user1
 			
 		}
@@ -140,15 +140,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	
-	func handleTap(sender: UITapGestureRecognizer) {
-		let touch = sender.locationInView(feedTV)
-		if let indexPath = feedTV.indexPathForRowAtPoint(touch) {
-			performSegueWithIdentifier("showProfile", sender: indexPath)
+	func handleTap(_ sender: UITapGestureRecognizer) {
+		let touch = sender.location(in: feedTV)
+		if let indexPath = feedTV.indexPathForRow(at: touch) {
+			performSegue(withIdentifier: "showProfile", sender: indexPath)
 		}
 	}
 	
 	func sortList() {
-		self.posts.sortInPlace() { $0.date > $1.date }
+		self.posts.sort() { $0.date > $1.date }
 		self.feedTV.reloadData()
 	}
 	
