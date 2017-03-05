@@ -18,13 +18,13 @@ class Coupon
     let ID: Int
     static var nextID : Int = 0
     let ref : FIRDatabaseReference?
-    let businessID : Int
+    let businessID : String
     var numbersLeft : Int
     let endDate : Date
     var discount : String
     var disc : String
     
-    init(key: String = "", businessID : Int, numbersLeft : Int, endDate : Date, discount: String, disc: String)
+    init(key: String = "", businessID : String, numbersLeft : Int, endDate : Date, discount: String, disc: String)
     {
         self.key = key
         Coupon.nextID += 1
@@ -42,7 +42,7 @@ class Coupon
         self.key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
         self.ID = snapshotValue["ID"] as! Int
-        self.businessID = snapshotValue["businessID"] as! Int
+        self.businessID = snapshotValue["businessID"] as! String
         self.numbersLeft = snapshotValue["numbersLeft"] as! Int
         self.endDate = stringToDate(dateString: snapshotValue["endDate"] as! String)
         self.discount = snapshotValue["discount"] as! String
@@ -50,7 +50,7 @@ class Coupon
         self.ref = snapshot.ref
     }
     
-    func toStorage()-> Any
+    func toStorage()-> [String : Any]
     {
         return [
             "id" : ID,
