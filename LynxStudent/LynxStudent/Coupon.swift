@@ -12,7 +12,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import Firebase
 
-class Coupon
+class Coupon: Hashable
 {
     let key : String
     let ID: Int
@@ -23,6 +23,10 @@ class Coupon
     let endDate : Date
     var discount : String
     var disc : String
+    
+    var hashValue: Int {
+        return ID
+    }
     
     init(key: String = "", businessID : String, numbersLeft : Int, endDate : Date, discount: String, disc: String)
     {
@@ -41,7 +45,7 @@ class Coupon
     {
         self.key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        self.ID = snapshotValue["ID"] as! Int
+        self.ID = snapshotValue["id"] as! Int
         self.businessID = snapshotValue["businessID"] as! String
         self.numbersLeft = snapshotValue["numbersLeft"] as! Int
         self.endDate = stringToDate(dateString: snapshotValue["endDate"] as! String)
@@ -62,4 +66,9 @@ class Coupon
         ]
     }
     
+}
+
+func == (left: Coupon, right: Coupon) -> Bool
+{
+    return left.ref == right.ref
 }

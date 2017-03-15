@@ -22,6 +22,10 @@
 		E242A4631E5E5F5F0047E602 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E242A4621E5E5F5F0047E602 /* Coupon.swift */; };
 		E242A4AF1E5F712D0047E602 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E242A4AE1E5F712D0047E602 /* LoginViewController.swift */; };
 		E28BE05E1E6CCABA00118969 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28BE05D1E6CCABA00118969 /* Business.swift */; };
+		E28BE0601E6CD11A00118969 /* CouponDisplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28BE05F1E6CD11A00118969 /* CouponDisplayController.swift */; };
+		E28BE0621E6CD20300118969 /* CouponMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28BE0611E6CD20300118969 /* CouponMaster.swift */; };
+		E28BE0641E6DCB9000118969 /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28BE0631E6DCB9000118969 /* CouponCell.swift */; };
+		E2CA66B71E788FCE00D5FB78 /* CouponSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA66B61E788FCE00D5FB78 /* CouponSorting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,10 @@
 		E242A4AE1E5F712D0047E602 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E242A4B01E5F74830047E602 /* LynxStudent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LynxStudent.entitlements; sourceTree = "<group>"; };
 		E28BE05D1E6CCABA00118969 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
+		E28BE05F1E6CD11A00118969 /* CouponDisplayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponDisplayController.swift; sourceTree = "<group>"; };
+		E28BE0611E6CD20300118969 /* CouponMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponMaster.swift; sourceTree = "<group>"; };
+		E28BE0631E6DCB9000118969 /* CouponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
+		E2CA66B61E788FCE00D5FB78 /* CouponSorting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponSorting.swift; sourceTree = "<group>"; };
 		F2A1AA10FB4A0BBC5C12426A /* Pods-LynxStudent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LynxStudent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LynxStudent/Pods-LynxStudent.debug.xcconfig"; sourceTree = "<group>"; };
 		F7DECBCD50D0632861F44C6F /* Pods_LynxStudent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LynxStudent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -179,6 +187,8 @@
 			children = (
 				E242A4171E5E4C850047E602 /* ViewController.swift */,
 				E242A4AE1E5F712D0047E602 /* LoginViewController.swift */,
+				E28BE05F1E6CD11A00118969 /* CouponDisplayController.swift */,
+				E28BE0631E6DCB9000118969 /* CouponCell.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -188,6 +198,8 @@
 			children = (
 				E242A4621E5E5F5F0047E602 /* Coupon.swift */,
 				E28BE05D1E6CCABA00118969 /* Business.swift */,
+				E28BE0611E6CD20300118969 /* CouponMaster.swift */,
+				E2CA66B61E788FCE00D5FB78 /* CouponSorting.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -390,6 +402,10 @@
 				E242A4181E5E4C850047E602 /* ViewController.swift in Sources */,
 				E242A4161E5E4C850047E602 /* AppDelegate.swift in Sources */,
 				E28BE05E1E6CCABA00118969 /* Business.swift in Sources */,
+				E28BE0601E6CD11A00118969 /* CouponDisplayController.swift in Sources */,
+				E28BE0621E6CD20300118969 /* CouponMaster.swift in Sources */,
+				E2CA66B71E788FCE00D5FB78 /* CouponSorting.swift in Sources */,
+				E28BE0641E6DCB9000118969 /* CouponCell.swift in Sources */,
 				E242A4AF1E5F712D0047E602 /* LoginViewController.swift in Sources */,
 				E242A4631E5E5F5F0047E602 /* Coupon.swift in Sources */,
 			);

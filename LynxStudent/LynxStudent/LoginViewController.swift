@@ -52,7 +52,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
                 }
                 else
                 {
-                    print("signed in to firebase through facebook")
+                    self.performSegue(withIdentifier: "Login", sender: nil)
+                    print("login through fb")
                 }
             }
         }

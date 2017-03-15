@@ -20,12 +20,16 @@ class Business
     var address: String
     var photoURL: String
     
+    // reference to its position at firebase database
+    let ref: FIRDatabaseReference?
+    
     init(key: String = "", name: String, address: String, photoURL: String = "")
     {
         self.key = key
         self.name = name
         self.address = address
         self.photoURL = photoURL
+        self.ref = nil
     }
     
     init(snapshot: FIRDataSnapshot)
@@ -35,6 +39,7 @@ class Business
         self.name = snapshotValue["name"] as! String
         self.address = snapshotValue["address"] as! String
         self.photoURL = snapshotValue["photoURL"] as! String
+        self.ref = snapshot.ref
     }
     
     func toStorage()-> [String : Any]
