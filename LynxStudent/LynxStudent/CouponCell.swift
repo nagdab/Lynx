@@ -16,7 +16,7 @@ class CouponCell: UITableViewCell
     
     @IBOutlet weak var businessName: UILabel!
     
-    @IBOutlet weak var couponDescription: UITextView!
+    @IBOutlet weak var couponDescription: UILabel!
     
     @IBOutlet weak var numLeft: UILabel!
     
@@ -25,7 +25,6 @@ class CouponCell: UITableViewCell
     // set up the cell's font and other information. 
     func cellSetUp()
     {
-        couponDescription.isEditable = false
         
         let bodyFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
         

@@ -95,11 +95,11 @@ class CouponDisplayController : UITableViewController
     {
         if indexPath.section == 0
         {
-            return 90.0
+            return 45.0
         }
         else
         {
-            return 250.0
+            return 125.0
         }
     }
     
@@ -179,6 +179,7 @@ class CouponDisplayController : UITableViewController
                         let image = UIImage(data: imageData)
                         // set the profile picture
                         cell.profilePic.image = image
+                        cell.profilePic.contentMode = .scaleAspectFit
                     }
                     else
                     {
