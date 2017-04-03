@@ -12,6 +12,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import Firebase
+import FBSDKLoginKit
 
 
 class CouponDisplayController : UITableViewController
@@ -24,6 +25,8 @@ class CouponDisplayController : UITableViewController
     
     // firebase reference to the businesses
     let businessRef = FIRDatabase.database().reference(withPath: "business")
+    
+    var displayFilter = false
     
     override func viewDidLoad()
     {
@@ -73,12 +76,27 @@ class CouponDisplayController : UITableViewController
         
     }
     
+    
+    @IBAction func filterOptionChanged(_ sender: Any)
+    {
+        displayFilter = !displayFilter
+        
+        self.tableView.reloadData()
+    }
+    
     // function for number of cells in table
     override func tableView(_: UITableView, numberOfRowsInSection: Int) -> Int
     {
         if numberOfRowsInSection == 0
         {
-            return couponMaster.orderedOptions.count
+            if displayFilter
+            {
+                return couponMaster.orderedOptions.count
+            }
+            else
+            {
+                return couponMaster.coupons.count
+            }
         }
         else
         {
@@ -88,7 +106,14 @@ class CouponDisplayController : UITableViewController
     
     override func numberOfSections(in tableView: UITableView) -> Int
     {
-        return 2
+        if displayFilter
+        {
+            return 2
+        }
+        else
+        {
+            return 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -99,13 +124,13 @@ class CouponDisplayController : UITableViewController
         }
         else
         {
-            return 125.0
+            return 100.0
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        if indexPath.section == 0
+        if indexPath.section == 0 && displayFilter
         {
             let text = cell.textLabel!.text!
             // if the sorting option is not selected
@@ -142,7 +167,7 @@ class CouponDisplayController : UITableViewController
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         // 0th section is for sorting options
-        if indexPath.section == 0
+        if indexPath.section == 0 && displayFilter
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell",
                                                      for: indexPath)
@@ -151,52 +176,58 @@ class CouponDisplayController : UITableViewController
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CouponCell",
-                                                 for: indexPath) as! CouponCell
-        cell.cellSetUp()
-        let coupon = couponMaster.sortedCoupons[indexPath.row]
+        if indexPath.section == 1 || !displayFilter
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CouponCell",
+                                                     for: indexPath) as! CouponCell
+            cell.cellSetUp()
+            let coupon = couponMaster.sortedCoupons[indexPath.row]
         
-        businessRef.child(coupon.businessID).observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as! [String : Any]
-            cell.businessName.text = value["name"] as? String
-            let propicURL = URL(string: value["photoURL"] as! String)
-            
-            let session = URLSession(configuration: .default)
-            
-            let downloadPicTask = session.dataTask(with: propicURL!) { (data, response, error) in
-                // The download has finished.
-                if let e = error
-                {
-                    print("Error downloading cat picture: \(e)")
-                }
-                else
-                {
-                    // No errors found.
-                    // It would be weird if we didn't have a response, so check for that too.
-                    if let imageData = data
+            businessRef.child(coupon.businessID).observeSingleEvent(of: .value, with: { snapshot in
+                let value = snapshot.value as! [String : Any]
+                cell.businessName.text = value["name"] as? String
+                cell.couponDescription.text = value["address"] as? String
+                let propicURL = URL(string: value["photoURL"] as! String)
+                
+                let session = URLSession(configuration: .default)
+                
+                let downloadPicTask = session.dataTask(with: propicURL!) { (data, response, error) in
+                    // The download has finished.
+                    if let e = error
                     {
-                        // Finally convert that Data into an image and do what you wish with it.
-                        let image = UIImage(data: imageData)
-                        // set the profile picture
-                        cell.profilePic.image = image
-                        cell.profilePic.contentMode = .scaleAspectFit
+                        print("Error downloading cat picture: \(e)")
                     }
                     else
                     {
-                        print("Couldn't get image: Image is nil")
+                        // No errors found.
+                        // It would be weird if we didn't have a response, so check for that too.
+                        if let imageData = data
+                        {
+                            // Finally convert that Data into an image and do what you wish with it.
+                            let image = UIImage(data: imageData)
+                            // set the profile picture
+                            cell.profilePic.image = image
+                            cell.profilePic.contentMode = .scaleAspectFit
+                        }
+                        else
+                        {
+                            print("Couldn't get image: Image is nil")
+                        }
+                        
                     }
-
                 }
-            }
+                
+                // resumes the download
+                downloadPicTask.resume()
+            })
             
-            // resumes the download
-            downloadPicTask.resume()
-        })
+            cell.numLeft.text = "\(coupon.numbersLeft)"
+            cell.endDate.text = dateToString(dateData: coupon.endDate)
+            
+            return cell
+        }
         
-        cell.numLeft.text = "\(coupon.numbersLeft)"
-        cell.endDate.text = dateToString(dateData: coupon.endDate)
-        cell.couponDescription.text = coupon.disc
-        
-        return cell
+        return tableView.dequeueReusableCell(withIdentifier: "UITableViewCell",
+                                             for: indexPath)
     }
 }

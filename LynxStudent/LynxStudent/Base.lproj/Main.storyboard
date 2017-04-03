@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,14 +24,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <segue destination="IbK-ic-VvC" kind="show" identifier="Login" id="5af-gI-vDP"/>
+                        <segue destination="Gce-nM-aDp" kind="show" identifier="Login" id="5af-gI-vDP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="10" y="125"/>
         </scene>
-        <!--Item-->
+        <!--Coupon Display Controller-->
         <scene sceneID="o6Y-iK-eeN">
             <objects>
                 <tableViewController id="IbK-ic-VvC" customClass="CouponDisplayController" customModule="LynxStudent" customModuleProvider="target" sceneMemberID="viewController">
@@ -153,13 +153,46 @@
                             <outlet property="delegate" destination="IbK-ic-VvC" id="y9x-Cr-fPy"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="85b-4f-9Ti"/>
+                    <navigationItem key="navigationItem" id="npr-Rd-ouw">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="8ei-Jy-F2k">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uhF-G6-i8t">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Filter"/>
+                                <connections>
+                                    <action selector="filterOptionChanged:" destination="IbK-ic-VvC" eventType="touchUpInside" id="SW7-ns-0fQ"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="filterOptionChanged:" destination="IbK-ic-VvC" id="uZ9-8H-5rS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="2It-8E-9cQ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KLF-wu-qpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1848.8" y="124.58770614692655"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="aIn-7A-21f">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gce-nM-aDp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="85b-4f-9Ti"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="myx-9y-ROe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IbK-ic-VvC" kind="relationship" relationship="rootViewController" id="E5Q-lH-h8D"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nXn-Im-kwY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="909.60000000000002" y="124.58770614692655"/>
         </scene>
