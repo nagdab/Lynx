@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -114,6 +114,11 @@
                                             <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0s-uw-aee">
+                                            <rect key="frame" x="324" y="75" width="40" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Detail"/>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="bj8-q0-tlg" firstAttribute="trailing" secondItem="b6n-to-uf4" secondAttribute="trailing" id="18K-eF-OEq"/>
@@ -142,6 +147,7 @@
                                 <connections>
                                     <outlet property="businessName" destination="oMl-cY-KaA" id="qmK-AO-WYr"/>
                                     <outlet property="couponDescription" destination="Gnd-uM-uGX" id="hWe-yf-g60"/>
+                                    <outlet property="discount" destination="bj8-q0-tlg" id="3Tf-lt-19H"/>
                                     <outlet property="endDate" destination="fKw-j3-txV" id="0Sl-eS-sqt"/>
                                     <outlet property="numLeft" destination="0Bs-RK-G9g" id="8FV-q5-bQd"/>
                                     <outlet property="profilePic" destination="zeA-fq-Kok" id="daR-RV-HrF"/>
@@ -167,11 +173,19 @@
                                 <action selector="filterOptionChanged:" destination="IbK-ic-VvC" id="uZ9-8H-5rS"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="LogOut" id="fFt-or-iAL">
+                            <connections>
+                                <action selector="LogOut:" destination="IbK-ic-VvC" id="QaW-uK-5sR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="2It-8E-9cQ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logOut" id="QEz-qw-IH5"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KLF-wu-qpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

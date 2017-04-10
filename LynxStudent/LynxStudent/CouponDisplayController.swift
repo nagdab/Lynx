@@ -84,6 +84,19 @@ class CouponDisplayController : UITableViewController
         self.tableView.reloadData()
     }
     
+    @IBAction func LogOut(_ sender: Any)
+    {
+        do
+        {
+            try FIRAuth.auth()?.signOut()
+            self.performSegue(withIdentifier: "logOut", sender: nil)
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        } catch let signOutError as NSError{
+            print(signOutError)
+        }
+        
+    }
+    
     // function for number of cells in table
     override func tableView(_: UITableView, numberOfRowsInSection: Int) -> Int
     {
@@ -187,6 +200,7 @@ class CouponDisplayController : UITableViewController
                 let value = snapshot.value as! [String : Any]
                 cell.businessName.text = value["name"] as? String
                 cell.couponDescription.text = value["address"] as? String
+                
                 let propicURL = URL(string: value["photoURL"] as! String)
                 
                 let session = URLSession(configuration: .default)
@@ -223,6 +237,7 @@ class CouponDisplayController : UITableViewController
             
             cell.numLeft.text = "\(coupon.numbersLeft)"
             cell.endDate.text = dateToString(dateData: coupon.endDate)
+            cell.discount.text = "discount:" + coupon.discount
             
             return cell
         }

@@ -22,6 +22,8 @@ class CouponCell: UITableViewCell
     
     @IBOutlet weak var endDate: UILabel!
     
+    @IBOutlet weak var discount: UILabel!
+    
     // set up the cell's font and other information. 
     func cellSetUp()
     {

@@ -21,10 +21,21 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
         view.addSubview(loginButton)
         
         // should be using constraints here, but didn't figure out how to do it programmatically
-        loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 50)
+        loginButton.frame = CGRect(x: 16, y: view.frame.height/2 - 25, width: view.frame.width - 32, height: 50)
         
         loginButton.delegate = self
-
+        
+        if FIRAuth.auth()?.currentUser != nil
+        {
+            print("logged in")
+            DispatchQueue.main.async(execute: {
+                self.performSegue(withIdentifier: "Login", sender: nil)
+            })
+        }
+        else
+        {
+            print("not logged in")
+        }
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!)
