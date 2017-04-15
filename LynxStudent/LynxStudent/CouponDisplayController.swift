@@ -13,6 +13,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import Firebase
 import FBSDKLoginKit
+import Cosmos
 
 
 class CouponDisplayController : UITableViewController
@@ -137,7 +138,7 @@ class CouponDisplayController : UITableViewController
         }
         else
         {
-            return 100.0
+            return 110.0
         }
     }
     
@@ -176,6 +177,28 @@ class CouponDisplayController : UITableViewController
     }
 
     
+    @IBAction func detailButtonPressed(_ sender: UIButton)
+    {
+        let coupon = couponMaster.sortedCoupons[sender.tag]
+        self.businessRef.child(coupon.businessID).observeSingleEvent(of: .value, with: { snapshot in
+            let newBusiness = Business(snapshot: snapshot)
+            self.performSegue(withIdentifier: "couponDetail", sender: (coupon, newBusiness))
+        })
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "couponDetail"
+        {
+            let sender = sender as! (Coupon, Business)
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.coupon = sender.0
+            detailViewController.business = sender.1
+        }
+    }
+    
+    
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
@@ -195,11 +218,18 @@ class CouponDisplayController : UITableViewController
                                                      for: indexPath) as! CouponCell
             cell.cellSetUp()
             let coupon = couponMaster.sortedCoupons[indexPath.row]
+            cell.coupon = coupon
         
             businessRef.child(coupon.businessID).observeSingleEvent(of: .value, with: { snapshot in
+                let newBusiness = Business(snapshot: snapshot)
+                cell.business = newBusiness
+                cell.businessName.text = newBusiness.name
+                cell.businessName.font = cell.businessName.font.withSize(20)
+                cell.couponDescription.text = newBusiness.address
+                cell.ratingView.rating = newBusiness.overallRating
+                cell.ratingView.text = "\(newBusiness.numOfRating) reviews"
+                cell.detailButton.tag = indexPath.row
                 let value = snapshot.value as! [String : Any]
-                cell.businessName.text = value["name"] as? String
-                cell.couponDescription.text = value["address"] as? String
                 
                 let propicURL = URL(string: value["photoURL"] as! String)
                 

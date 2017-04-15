@@ -21,6 +21,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FIRApp.configure()
+        /*
+        let ref = FIRDatabase.database().reference(withPath: "business")
+        ref.observe(.value, with: { snapshot in
+            if snapshot.exists()
+            {
+                for item in snapshot.children
+                {
+                    let snap = item as! FIRDataSnapshot
+                    let reference = snap.ref
+                    let ratingref = reference.child("rating")
+                    ratingref.setValue(["default" : 5])
+                    print("update")
+                }
+            }
+            else
+            {
+                print("empty")
+            }
+            
+        })
+        */
         return true
     }
 

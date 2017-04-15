@@ -19,6 +19,21 @@ class Business
     var name: String
     var address: String
     var photoURL: String
+    var rating : [String: Int] = ["default" : 5]
+    
+    var overallRating: Double {
+        get {
+            let allRatings = Array(rating.values)
+            return allRatings.reduce(0.0, {$0 + Double($1)})/Double(allRatings.count)
+        }
+    }
+    
+    var numOfRating: Int {
+        get {
+            let allRatings = Array(rating.values)
+            return allRatings.count
+        }
+    }
     
     // reference to its position at firebase database
     let ref: FIRDatabaseReference?
@@ -39,6 +54,7 @@ class Business
         self.name = snapshotValue["name"] as! String
         self.address = snapshotValue["address"] as! String
         self.photoURL = snapshotValue["photoURL"] as! String
+        self.rating = snapshotValue["rating"] as! [String: Int]
         self.ref = snapshot.ref
     }
     
@@ -47,7 +63,8 @@ class Business
         return [
             "name" : self.name,
             "address" : self.address,
-            "photoURL" : self.photoURL
+            "photoURL" : self.photoURL,
+            "rating" : self.rating
         ]
     }
 }

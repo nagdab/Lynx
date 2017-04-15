@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Cosmos
 
 class CouponCell: UITableViewCell
 {
@@ -24,6 +25,14 @@ class CouponCell: UITableViewCell
     
     @IBOutlet weak var discount: UILabel!
     
+    @IBOutlet weak var ratingView: CosmosView!
+
+    @IBOutlet weak var detailButton: UIButton!
+    
+    var coupon: Coupon!
+    
+    var business: Business!
+    
     // set up the cell's font and other information. 
     func cellSetUp()
     {
@@ -38,4 +47,7 @@ class CouponCell: UITableViewCell
         
         businessName.font = captionFont
     }
+    
+    
+    
 }

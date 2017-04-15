@@ -10,4 +10,5 @@ target 'LynxStudent' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
+  pod 'Cosmos'
 end
