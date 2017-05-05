@@ -19,7 +19,8 @@ class Business
     var name: String
     var address: String
     var photoURL: String
-    var rating : [String: Int] = ["default" : 5]
+    var rating : [String: Double] = ["default" : 5.0]
+    var comments : [String: String] = ["default" : ""]
     
     var overallRating: Double {
         get {
@@ -54,7 +55,8 @@ class Business
         self.name = snapshotValue["name"] as! String
         self.address = snapshotValue["address"] as! String
         self.photoURL = snapshotValue["photoURL"] as! String
-        self.rating = snapshotValue["rating"] as! [String: Int]
+        self.rating = snapshotValue["rating"] as! [String: Double]
+        self.comments = snapshotValue["comments"] as! [String : String]
         self.ref = snapshot.ref
     }
     
@@ -64,7 +66,8 @@ class Business
             "name" : self.name,
             "address" : self.address,
             "photoURL" : self.photoURL,
-            "rating" : self.rating
+            "rating" : self.rating,
+            "comments" : self.comments
         ]
     }
 }

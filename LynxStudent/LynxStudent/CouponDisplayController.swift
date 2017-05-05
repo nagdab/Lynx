@@ -228,6 +228,7 @@ class CouponDisplayController : UITableViewController
                 cell.couponDescription.text = newBusiness.address
                 cell.ratingView.rating = newBusiness.overallRating
                 cell.ratingView.text = "\(newBusiness.numOfRating) reviews"
+                cell.ratingView.settings.updateOnTouch = false
                 cell.detailButton.tag = indexPath.row
                 let value = snapshot.value as! [String : Any]
                 

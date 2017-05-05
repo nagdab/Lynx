@@ -25,6 +25,8 @@
 		E28BE0601E6CD11A00118969 /* CouponDisplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28BE05F1E6CD11A00118969 /* CouponDisplayController.swift */; };
 		E28BE0621E6CD20300118969 /* CouponMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28BE0611E6CD20300118969 /* CouponMaster.swift */; };
 		E28BE0641E6DCB9000118969 /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28BE0631E6DCB9000118969 /* CouponCell.swift */; };
+		E2BEB9421EBCB5140059D9A0 /* CommentDisplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BEB9411EBCB5140059D9A0 /* CommentDisplayController.swift */; };
+		E2BEB9441EBCB6670059D9A0 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BEB9431EBCB6670059D9A0 /* CommentCell.swift */; };
 		E2CA66B71E788FCE00D5FB78 /* CouponSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA66B61E788FCE00D5FB78 /* CouponSorting.swift */; };
 		E2F3D1051EA17FA80071E5D9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F3D1041EA17FA80071E5D9 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +72,8 @@
 		E28BE05F1E6CD11A00118969 /* CouponDisplayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponDisplayController.swift; sourceTree = "<group>"; };
 		E28BE0611E6CD20300118969 /* CouponMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponMaster.swift; sourceTree = "<group>"; };
 		E28BE0631E6DCB9000118969 /* CouponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
+		E2BEB9411EBCB5140059D9A0 /* CommentDisplayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentDisplayController.swift; sourceTree = "<group>"; };
+		E2BEB9431EBCB6670059D9A0 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		E2CA66B61E788FCE00D5FB78 /* CouponSorting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponSorting.swift; sourceTree = "<group>"; };
 		E2F3D1041EA17FA80071E5D9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F2A1AA10FB4A0BBC5C12426A /* Pods-LynxStudent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LynxStudent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LynxStudent/Pods-LynxStudent.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 				E28BE05F1E6CD11A00118969 /* CouponDisplayController.swift */,
 				E28BE0631E6DCB9000118969 /* CouponCell.swift */,
 				E2F3D1041EA17FA80071E5D9 /* DetailViewController.swift */,
+				E2BEB9411EBCB5140059D9A0 /* CommentDisplayController.swift */,
+				E2BEB9431EBCB6670059D9A0 /* CommentCell.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -401,12 +407,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2BEB9441EBCB6670059D9A0 /* CommentCell.swift in Sources */,
 				E242A4601E5E5F2C0047E602 /* global.swift in Sources */,
 				E242A4181E5E4C850047E602 /* ViewController.swift in Sources */,
 				E242A4161E5E4C850047E602 /* AppDelegate.swift in Sources */,
 				E2F3D1051EA17FA80071E5D9 /* DetailViewController.swift in Sources */,
 				E28BE05E1E6CCABA00118969 /* Business.swift in Sources */,
 				E28BE0601E6CD11A00118969 /* CouponDisplayController.swift in Sources */,
+				E2BEB9421EBCB5140059D9A0 /* CommentDisplayController.swift in Sources */,
 				E28BE0621E6CD20300118969 /* CouponMaster.swift in Sources */,
 				E2CA66B71E788FCE00D5FB78 /* CouponSorting.swift in Sources */,
 				E28BE0641E6DCB9000118969 /* CouponCell.swift in Sources */,

@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
 {
@@ -25,6 +26,21 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
         
         loginButton.delegate = self
         
+        // this block of code can be used to update the model when needed
+        /*
+        let ref = FIRDatabase.database().reference(withPath: "business")
+        
+        ref.observe(.value, with: { snapshot in
+            for item in snapshot.children
+            {
+                let snap = item as! FIRDataSnapshot
+                snap.ref.updateChildValues([
+                    "rating" : ["default" : 5.0]
+                    ])
+            }
+        })
+        */
+ 
         if FIRAuth.auth()?.currentUser != nil
         {
             print("logged in")
