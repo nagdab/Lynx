@@ -40,7 +40,7 @@ class CouponDisplayController : UITableViewController
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 65
+        tableView.estimatedRowHeight = 80
         
         
         ref.observe(.value, with: { snapshot in
@@ -138,7 +138,7 @@ class CouponDisplayController : UITableViewController
         }
         else
         {
-            return 110.0
+            return 140.0
         }
     }
     
@@ -217,6 +217,18 @@ class CouponDisplayController : UITableViewController
             let cell = tableView.dequeueReusableCell(withIdentifier: "CouponCell",
                                                      for: indexPath) as! CouponCell
             cell.cellSetUp()
+            
+            // create the black background of the cell
+            let blackRoundedView : UIView = UIView(frame: CGRect(x: 7, y: 8, width: self.view.frame.size.width - 14, height: 139))
+            
+            blackRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 1.0])
+            blackRoundedView.layer.masksToBounds = false
+            blackRoundedView.layer.cornerRadius = 2.0
+            blackRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+            blackRoundedView.layer.shadowOpacity = 0.2
+            
+            cell.contentView.addSubview(blackRoundedView)
+            cell.contentView.sendSubview(toBack: blackRoundedView)
             let coupon = couponMaster.sortedCoupons[indexPath.row]
             cell.coupon = coupon
         

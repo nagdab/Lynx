@@ -22,6 +22,8 @@ class DetailViewController: UIViewController
     var coupon: Coupon!
     var business: Business!
     
+    var oldFrame:CGRect!
+    
     @IBOutlet weak var profilePic: UIImageView!
     
     @IBOutlet weak var businessName: UILabel!
@@ -41,7 +43,7 @@ class DetailViewController: UIViewController
     @IBOutlet weak var newRating: CosmosView!
     
     
-    
+
     // firebase reference to the coupons
     let ref = FIRDatabase.database().reference(withPath: "coupon")
     
@@ -50,6 +52,9 @@ class DetailViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hideKeyboardWhenTappedAround()
+        
         businessName.text = business.name
         businessRating.rating = business.overallRating
         businessRating.settings.updateOnTouch = false
@@ -90,6 +95,9 @@ class DetailViewController: UIViewController
         
         // resumes the download
         downloadPicTask.resume()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
 
     }
     
@@ -107,6 +115,26 @@ class DetailViewController: UIViewController
         commentDisplay.business = business
     }
     
+    func keyBoardWillShow(notification: NSNotification) {
+        oldFrame = newComment.frame
+        newComment.frame = CGRect(x: 80, y: 1.0*view.frame.height/3.0 - 70, width: view.frame.width - 160, height: 150)
+        for x in view.subviews
+        {
+            x.isHidden = true
+        }
+        newComment.isHidden = false
+    }
+    
+    
+    func keyBoardWillHide(notification: NSNotification) {
+        newComment.frame = oldFrame
+        for x in view.subviews
+        {
+            x.isHidden = false
+        }
+    }
+
+   
     
     @IBAction func submit(_ sender: Any)
     {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // here are the global functions
 
@@ -22,4 +23,16 @@ func dateToString(dateData: Date)-> String
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MM dd yyyy hh:mm:ss"
     return dateFormatter.string(from: dateData)
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
