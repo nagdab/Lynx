@@ -21,6 +21,7 @@ class Business
     var photoURL: String
     var rating : [String: Double] = ["default" : 5.0]
     var comments : [String: String] = ["default" : ""]
+    var profilePic: UIImage?
     
     var overallRating: Double {
         get {

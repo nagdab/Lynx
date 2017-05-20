@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C74D70A9D987C245F4A5CF40 /* Pods_LynxStudent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DECBCD50D0632861F44C6F /* Pods_LynxStudent.framework */; };
+		E2395BE91ED0CDAE0086010F /* Lynx.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2395BE81ED0CDAE0086010F /* Lynx.jpg */; };
 		E242A4161E5E4C850047E602 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E242A4151E5E4C850047E602 /* AppDelegate.swift */; };
 		E242A4181E5E4C850047E602 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E242A4171E5E4C850047E602 /* ViewController.swift */; };
 		E242A41B1E5E4C850047E602 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E242A4191E5E4C850047E602 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		2399105955E20E3CD800DC3D /* Pods-LynxStudent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LynxStudent.release.xcconfig"; path = "Pods/Target Support Files/Pods-LynxStudent/Pods-LynxStudent.release.xcconfig"; sourceTree = "<group>"; };
+		E2395BE81ED0CDAE0086010F /* Lynx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Lynx.jpg; path = ../../../../../../../Downloads/Lynx.jpg; sourceTree = "<group>"; };
 		E242A4121E5E4C850047E602 /* LynxStudent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LynxStudent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E242A4151E5E4C850047E602 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E242A4171E5E4C850047E602 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				E242A4211E5E4C850047E602 /* Info.plist */,
 				E242A4481E5E4DB20047E602 /* GoogleService-Info.plist */,
 				E242A45F1E5E5F2C0047E602 /* global.swift */,
+				E2395BE81ED0CDAE0086010F /* Lynx.jpg */,
 			);
 			path = LynxStudent;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			files = (
 				E242A4201E5E4C850047E602 /* LaunchScreen.storyboard in Resources */,
 				E242A4491E5E4DB20047E602 /* GoogleService-Info.plist in Resources */,
+				E2395BE91ED0CDAE0086010F /* Lynx.jpg in Resources */,
 				E242A41D1E5E4C850047E602 /* Assets.xcassets in Resources */,
 				E242A41B1E5E4C850047E602 /* Main.storyboard in Resources */,
 			);

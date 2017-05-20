@@ -78,6 +78,7 @@ class DetailViewController: UIViewController
                     let image = UIImage(data: imageData)
                     // set the profile picture
                     self.profilePic.image = image
+                    print("download succeeded")
                 }
                 else
                 {
@@ -86,6 +87,9 @@ class DetailViewController: UIViewController
                 
             }
         }
+        
+        // resumes the download
+        downloadPicTask.resume()
 
     }
     

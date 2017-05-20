@@ -22,7 +22,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
         view.addSubview(loginButton)
         
         // should be using constraints here, but didn't figure out how to do it programmatically
-        loginButton.frame = CGRect(x: 16, y: view.frame.height/2 - 25, width: view.frame.width - 32, height: 50)
+        loginButton.frame = CGRect(x: 80, y: 2.0*view.frame.height/3.0 - 25, width: view.frame.width - 160, height: 50)
         
         loginButton.delegate = self
         
