@@ -59,7 +59,7 @@ class DetailViewController: UIViewController
         businessName.text = business.name
         businessRating.rating = business.overallRating
         businessRating.settings.updateOnTouch = false
-        discount.text = "$" + coupon.discount
+        discount.text = coupon.discount
     //    amountLeft.text = String(coupon.numbersLeft) + " left"
         address.text = business.address
     //   endDate.text = dateToString(dateData: coupon.endDate)

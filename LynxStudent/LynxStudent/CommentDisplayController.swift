@@ -33,12 +33,9 @@ class CommentDisplayController: UITableViewController
         
         for (user, comment) in comments
         {
-            if user != business.name
+            if user != business.name && user != "default" && comment != coupon.disc && comment != ""
             {
                 users.append(user)
-            }
-            if comment != coupon.disc
-            {
                 userComments.append(comment)
             }
         }

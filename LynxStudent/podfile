@@ -11,4 +11,5 @@ target 'LynxStudent' do
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
   pod 'Cosmos'
+  pod 'Firebase/Messaging'
 end

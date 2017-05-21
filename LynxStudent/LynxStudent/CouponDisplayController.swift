@@ -14,7 +14,9 @@ import FirebaseAuth
 import Firebase
 import FBSDKLoginKit
 import Cosmos
-
+import  UserNotifications
+import UserNotificationsUI
+import CoreLocation
 
 class CouponDisplayController : UITableViewController
 {
@@ -27,12 +29,26 @@ class CouponDisplayController : UITableViewController
     // firebase reference to the businesses
     let businessRef = FIRDatabase.database().reference(withPath: "business")
     
+    let requestIdentifier = "SampleRequest" //identifier is to cancel the notification request
+    
     var displayFilter = false
+    
+    var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+    
+    lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.delegate = self
+        manager.requestAlwaysAuthorization()
+        return manager
+    }()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         print("view loaded")
+        
+        locationManager.startUpdatingLocation()
         
         // set up the cell's height
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
@@ -42,6 +58,26 @@ class CouponDisplayController : UITableViewController
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
         
+        ref.observe(.childAdded, with: { snapshot in
+            let content = UNMutableNotificationContent()
+            content.title = "New Coupon is posted"
+            content.body = "Go check it out"
+            content.sound = UNNotificationSound.default()
+            
+            // Deliver the notification in point five seconds.
+            let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 0.5, repeats: false)
+            let request = UNNotificationRequest(identifier:self.requestIdentifier, content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().add(request){(error) in
+                
+                if (error != nil){
+                    
+                    print(error?.localizedDescription)
+                }
+            }
+        })
+
         
         ref.observe(.value, with: { snapshot in
             
@@ -76,6 +112,7 @@ class CouponDisplayController : UITableViewController
         self.tableView.reloadData()
         
     }
+
     
     
     @IBAction func filterOptionChanged(_ sender: Any)

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LynxStudent/CouponDisplayController.swift"
-            timestampString = "513568916.485893"
+            timestampString = "517044630.312895"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "numberOfSections(in:)"
             landmarkType = "7">
          </BreakpointContent>

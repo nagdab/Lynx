@@ -16,7 +16,7 @@ func sortByDate(left: Coupon, right: Coupon) -> Bool
 
 func sortByNumber(left: Coupon, right: Coupon) -> Bool
 {
-    return left.numbersLeft > right.numbersLeft
+    return left.numbersLeft < right.numbersLeft
 }
 
 func sortByBusiness(left: Coupon, right: Coupon) -> Bool

@@ -13,7 +13,7 @@ import FirebaseAuth
 import Firebase
 
 
-class Business
+class Business: Hashable
 {
     var key: String
     var name: String
@@ -71,4 +71,14 @@ class Business
             "comments" : self.comments
         ]
     }
+    
+    var hashValue: Int
+    {
+        return name.characters.count
+    }
+}
+
+func == (left: Business, right: Business) -> Bool
+{
+    return left.name == right.name
 }
