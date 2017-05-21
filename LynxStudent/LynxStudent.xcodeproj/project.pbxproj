@@ -11,6 +11,9 @@
 		E2395BEB1ED105100086010F /* Lynx.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2395BEA1ED105100086010F /* Lynx.jpg */; };
 		E2395BEC1ED105100086010F /* Lynx.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2395BEA1ED105100086010F /* Lynx.jpg */; };
 		E2395BED1ED105100086010F /* Lynx.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2395BEA1ED105100086010F /* Lynx.jpg */; };
+		E2395BEF1ED107C10086010F /* empty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2395BEE1ED107C10086010F /* empty.jpg */; };
+		E2395BF01ED107C10086010F /* empty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2395BEE1ED107C10086010F /* empty.jpg */; };
+		E2395BF11ED107C10086010F /* empty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2395BEE1ED107C10086010F /* empty.jpg */; };
 		E242A4161E5E4C850047E602 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E242A4151E5E4C850047E602 /* AppDelegate.swift */; };
 		E242A4181E5E4C850047E602 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E242A4171E5E4C850047E602 /* ViewController.swift */; };
 		E242A41B1E5E4C850047E602 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E242A4191E5E4C850047E602 /* Main.storyboard */; };
@@ -54,6 +57,7 @@
 /* Begin PBXFileReference section */
 		2399105955E20E3CD800DC3D /* Pods-LynxStudent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LynxStudent.release.xcconfig"; path = "Pods/Target Support Files/Pods-LynxStudent/Pods-LynxStudent.release.xcconfig"; sourceTree = "<group>"; };
 		E2395BEA1ED105100086010F /* Lynx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Lynx.jpg; sourceTree = "<group>"; };
+		E2395BEE1ED107C10086010F /* empty.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = empty.jpg; sourceTree = "<group>"; };
 		E242A4121E5E4C850047E602 /* LynxStudent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LynxStudent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E242A4151E5E4C850047E602 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E242A4171E5E4C850047E602 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				E242A4481E5E4DB20047E602 /* GoogleService-Info.plist */,
 				E242A45F1E5E5F2C0047E602 /* global.swift */,
 				E2395BEA1ED105100086010F /* Lynx.jpg */,
+				E2395BEE1ED107C10086010F /* empty.jpg */,
 			);
 			path = LynxStudent;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				E2395BEB1ED105100086010F /* Lynx.jpg in Resources */,
 				E242A41D1E5E4C850047E602 /* Assets.xcassets in Resources */,
 				E242A41B1E5E4C850047E602 /* Main.storyboard in Resources */,
+				E2395BEF1ED107C10086010F /* empty.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +354,7 @@
 			files = (
 				E2395BEC1ED105100086010F /* Lynx.jpg in Resources */,
 				E242A44A1E5E4DB20047E602 /* GoogleService-Info.plist in Resources */,
+				E2395BF01ED107C10086010F /* empty.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +364,7 @@
 			files = (
 				E2395BED1ED105100086010F /* Lynx.jpg in Resources */,
 				E242A44B1E5E4DB20047E602 /* GoogleService-Info.plist in Resources */,
+				E2395BF11ED107C10086010F /* empty.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
