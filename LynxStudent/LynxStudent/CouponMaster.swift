@@ -30,13 +30,13 @@ class CouponMaster
         }
     }
     
-    var orderedOptions = ["sort by date", "sort by numbers left", "sort by business", "selected coupon always on top"]
+    var orderedOptions = ["Sort By Date", "Sort By Numbers Left", "Sort By Business", "Selected Coupon Always On Top"]
     
     var options : [String : couponSorterOptions] = [
-        "sort by date" : couponSorterOptions.twoCoupons(sortByDate),
-        "sort by numbers left" : couponSorterOptions.twoCoupons(sortByNumber),
-        "sort by business" : couponSorterOptions.twoCoupons(sortByBusiness),
-        "selected coupon always on top": couponSorterOptions.oneCouponOneSet(sortBySelected)
+        "Sort By Date" : couponSorterOptions.twoCoupons(sortByDate),
+        "Sort By Numbers Left" : couponSorterOptions.twoCoupons(sortByNumber),
+        "Sort By Business" : couponSorterOptions.twoCoupons(sortByBusiness),
+        "Selected Coupon Always On Top": couponSorterOptions.oneCouponOneSet(sortBySelected)
     ]
     
     var availableOptions = [String : couponSorterOptions]()

@@ -42,6 +42,7 @@ class DetailViewController: UIViewController
     
     @IBOutlet weak var newRating: CosmosView!
     
+    @IBOutlet weak var remainingExpiryLabel: UILabel!
     
 
     // firebase reference to the coupons
@@ -59,10 +60,11 @@ class DetailViewController: UIViewController
         businessRating.rating = business.overallRating
         businessRating.settings.updateOnTouch = false
         discount.text = "$" + coupon.discount
-        amountLeft.text = String(coupon.numbersLeft) + " left"
+    //    amountLeft.text = String(coupon.numbersLeft) + " left"
         address.text = business.address
-        endDate.text = dateToString(dateData: coupon.endDate)
+    //   endDate.text = dateToString(dateData: coupon.endDate)
         
+        remainingExpiryLabel.text = "\(coupon.numbersLeft) coupons left, expiring on \(dateToString(dateData: coupon.endDate))"
         let session = URLSession(configuration: .default)
         
         let propicURL = URL(string: business.photoURL)!

@@ -29,6 +29,8 @@ class CouponCell: UITableViewCell
 
     @IBOutlet weak var detailButton: UIButton!
     
+    @IBOutlet weak var remainingExpiry: UILabel!
+    
     var coupon: Coupon!
     
     var business: Business!
@@ -37,15 +39,15 @@ class CouponCell: UITableViewCell
     func cellSetUp()
     {
         
-        let bodyFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+   //     let bodyFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
         
-        let captionFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
+   //     let captionFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
         
-        numLeft.font = bodyFont
+   //     numLeft.font = bodyFont
         
-        endDate.font = bodyFont
+   //     endDate.font = bodyFont
         
-        businessName.font = captionFont
+   //     businessName.font = captionFont
     }
     
     

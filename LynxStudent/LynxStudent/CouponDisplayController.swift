@@ -237,10 +237,10 @@ class CouponDisplayController : UITableViewController
                 cell.business = newBusiness
                 cell.businessName.text = newBusiness.name
                 cell.businessName.font = cell.businessName.font.withSize(20)
-                cell.couponDescription.text = newBusiness.address
-                cell.ratingView.rating = newBusiness.overallRating
-                cell.ratingView.text = "\(newBusiness.numOfRating) reviews"
-                cell.ratingView.settings.updateOnTouch = false
+     //           cell.couponDescription.text = newBusiness.address
+     //           cell.ratingView.rating = newBusiness.overallRating
+      //          cell.ratingView.text = "\(newBusiness.numOfRating) reviews"
+      //          cell.ratingView.settings.updateOnTouch = false
                 cell.detailButton.tag = indexPath.row
                 let value = snapshot.value as! [String : Any]
                 
@@ -278,9 +278,10 @@ class CouponDisplayController : UITableViewController
                 downloadPicTask.resume()
             })
             
-            cell.numLeft.text = "\(coupon.numbersLeft)"
-            cell.endDate.text = dateToString(dateData: coupon.endDate)
-            cell.discount.text = "discount:" + coupon.discount
+     //       cell.numLeft.text = "\(coupon.numbersLeft)"
+      //      cell.endDate.text = dateToString(dateData: coupon.endDate)
+            cell.remainingExpiry.text = "\(coupon.numbersLeft) coupons left, expiring on \(dateToString(dateData: coupon.endDate))"
+            cell.discount.text = coupon.discount.uppercased()
             
             return cell
         }
